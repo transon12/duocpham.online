@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    overflow-x: hidden;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    color: #808080;
+    background-color: inherit;
+    width: 100%;
+    height: auto;
+}
+.block {
+    margin-bottom: 30px;
+}
+.quote {
+    text-align: center;
+    color: #666666;
+    font-weight: 400;
+    font-size: 18px;
+}
+.quote h3 {
+    font-size: 36px;
+    font-weight: 100 !important;
+    color: #000000;
+}
+strong {
+    color: #1dbc69;
+}
+.section-content{
+    padding: 40px 0;
+}
+
+/* /////////// SECTION 4 /////////// */
+.section4-icon {
+    width: 60px;
+    height: 60px;
+}
+.section4-first {
+    text-align: right;
+}
+.section4-attributes {
+    margin: 60px 0;
+}
+.section4-label {
+    margin-bottom: 10px;
+    color: #276ef9;
+    font-size: 22px;
+}
+/* /////////// SECTION 5 /////////// */
+.section5 .section-content-wrap {
+    position: relative;
+}
+.section5 .section-content::before, .section5 .section-content::after {
+    content: ' ';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+}
+.section5 .section-content::before {
+    background: url(https://www.chili.vn/wp-content/themes/bb-theme-child/images/bg-line-web-shop.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 480px;
+    top: 0;
+}
+.section5 .section-content::after {
+    width: 100%;
+    height: 100%;
+    background: #276ef9;
+    bottom: 0;
+}
+.section5-attribute {
+    color: #ffffff;
+    padding-bottom: 50px;
+    padding-left: 30px;
+}
+.section5-attributes {
+    padding-top: 80px;
+}
+.section5-attribute h3 {
+    font-size: 18px;
+}
+.btn-align {
+    text-align: center !important;
+}
+button {
+    border-radius: 50px!important;
+    margin-top: 30px; 
+}
+
+
+/* /////////// SECTION 6 /////////// */
+.testimonial-video {
+    background-color: #888888;
+    width: 720px;
+    height: 650px;
+    overflow: hidden;
+}
+video {
+    top: 0;
+    width: 100%;
+}
+.testimonial-quote-wrap {
+    width: 720px;
+    height: 650px;
+}
+.testimonial-quote-content {
+    padding: 80px 100px 80px;
+    text-align: center;
+    color: #666666;
+}
+.head-general {
+    font-size: 15px;
+}
+.name-testimonial {
+    font-size: 18px;
+}
+.text-testimonial-quote {
+    margin: 35px 0;
+    font-size: 30px;
+}
+.testimonial-quote-content a{
+    text-decoration: underline;
+    color: inherit ; 
+    z-index: 900;
+}
+.testimonial-quote-content a:hover{
+    color: rgb(28, 82, 185) ;
+}
+.brand, .brand:hover {
+    color: #1dbc69 !important;
+    text-decoration: none !important ;
+}
+.more {
+    position: absolute;
+    color: #666666;
+    top: 82%;
+    left: 75%;
+    transform: translateX(-50%);
+}
+.customerSlide {
+    background: url(https://www.chili.vn/wp-content/themes/bb-theme-child/images/chili-tesminal-bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: 50% 0;
+    position: relative;
+}
+.slick-dots {
+    left: 25%;
+    top: 72%;
+    position: absolute;
+}
+.slick-dots li button {
+    background-color: #888888;
+    width: 0.15em;
+    height: 0.15em;
+    text-indent: -99999px
+}
+.slick-dots li.slick-active button, .slick-dots button:hover {
+    background-color: #1dbc69;
+}
+/* /////////// SECTION 7 /////////// */
+.section7 .section-content-wrap{
+    background: url(https://www.chili.vn/wp-content/uploads/2017/07/22129e451ab7f4f13c0b08ee8015c47a.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    display: block;
+    position: relative;
+}
+.section7 .section-content-wrap::after{
+    background-color: rgba(39,110,249,.9);
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.section7 .section-content{
+    color: #ffffff;
+    text-align: center;
+    z-index: 100;
+    position: relative;
+}
+.fa {
+    font-size: 130px;
+    margin-bottom: 40px;
+}
+.section7-quote {
+    padding: 30px 100px;
+}
+
+.attributeSlide {
+    padding: 0 180px;
+}
+
+.slick-next::before, .slick-prev::before {
+    font-weight: 700;
+    font-size: 90px !important;
+}
+/* ///////// FORM //////// */
+.modal-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333333;
+    font-weight: bold;
+}
+.form-control {
+    margin-bottom: 1rem;
+}
+.form-check-label {
+    color: #1dbc69;
+}
+.close {
+    position: absolute;
+    right: -12px;
+    top: -55px;
+    color: white;
+    font-size: 50px;
+    opacity: 1;
+}
+.close:hover {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+/* ///////// RESPONSIVE ////////// */
+
+@media (min-width: 767px) and (max-width: 999px) {
+    /* SECTION 4*/
+    .phone {
+        padding-top: 100px;
+    }
+    .section4-label, .section5-attributes h3{
+        font-size: 15px;
+    }
+    .section4-attributes p, .section5-attributes p {
+        font-size: 13px;
+    }
+    .section4-icon {
+        height: 40px;
+        width: 40px;
+    } 
+    /* SECTION 5*/
+    .search-icon{
+        height: 70px;
+        width: 76px;
+    }
+    .customer-icon {
+        height: 68px;
+        width: 57px;
+    }
+    .global-icon {
+        height: 54px;
+        width: 70px;
+    }
+    /* SECTION 6 */
+    .item {
+        height: 400px !important;
+    }
+    video {
+        width: 505px;
+        height: 505px;
+    }
+    .text-testimonial-quote {
+        font-size: 22px !important;
+        margin: 30px 0 !important;
+        font-size: 22px;
+    }
+    .testimonial-quote-content {
+        padding: 20px 20px 10px; 
+    }
+    .slick-dots {
+        left: 25%;
+        top: 55%;
+        position: absolute;
+    }
+    .more {
+        top: 85%;
+    }
+    /* SECTION 7 */
+    .attributeSlide {
+        padding: 0 30px 0 40px !important;
+    }
+    .slick-next::before, .slick-prev::before {
+        font-size: 50px !important;
+    }
+}
+@media (min-width: 999px) and (max-width: 1204px) {
+    /* SECTION 6 */
+    .item {
+        height: 590px !important;
+    }
+    .testimonial-quote-content {
+        padding: 20px 50px 0; 
+    }
+ 
+}
+@media (min-width: 767px) {
+    /* SECTION 5 */
+    .section5 .section-content::after {
+        height: 50%;
+    }
+}
+@media (max-width: 767px) {
+    /* SECTION 5 */
+    .section5-attribute {
+        text-align: center;
+        padding-left: 0;
+    }
+    .section5-icon {
+        margin-bottom: 30px;
+    } 
+    /* SECTION 6 */
+    .item {
+        display: block !important;
+        position: relative;
+    }
+    .testimonial-video {
+        width: 100%;
+        height: 570px;
+    }
+    .testimonial-quote-wrap {
+        width: 100%;
+    }
+    .slick-dots {
+        left: -1%;
+        top: 50%;
+    }
+    .testimonial-quote-content {
+        padding: 100px 20px 0; 
+    }
+    .more {
+        top: 87%;
+        left: 50%;
+    }
+    /* SECTION 7 */
+    .slick-next::before, .slick-prev::before {
+        font-size: 30px !important;
+    }
+}
+@media (max-width: 613px) {
+    .testimonial-video {
+        height: 490px;
+    }
+    .slick-dots {
+        top: 44%;
+    }
+}
+@media (max-width: 529px) {
+    .testimonial-video {
+        height: 410px;
+    }
+}
+@media (max-width: 442px) {
+    /* SECTION 6 */
+    .more {
+        top: 92%;
+    }
+    .testimonial-video {
+        height: 350px;
+    }
+}
+@media (max-width: 390px) {
+    /* SECTION 6 */
+    .more {
+        top: 92%;
+    }
+    .testimonial-video {
+        height: 310px;
+    }
+    .slick-dots {
+        top: 37%;
+    }
+}
+@media (max-width: 330px) {
+    /* SECTION 6 */
+    .testimonial-video {
+        height: 250px;
+    }
+    .slick-dots {
+        top: 30%;
+    }
+}
+@media (max-width: 990px) {
+    /* SECTION 5 */
+    .section5-attributes {
+        padding-top:  30px !important;
+    }
+    /* SECTION 6 */
+    .text-testimonial-quote {
+        font-size: 22px;
+    }
+    /* SECTION 7 */
+    .attributeSlide {
+        padding: 0 30px 0 50px !important;
+    }
+    .section7-quote {
+        padding: 30px 0 !important;
+    }
+}
+@media (max-width: 579px) {
+    /* SECTION 7 */
+    .slick-next {
+        right: -10px !important;
+    }
+    .slick-prev {
+        left: -10px !important;
+    }
+}
