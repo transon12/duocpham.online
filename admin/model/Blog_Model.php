@@ -52,43 +52,24 @@ class Blog_Model extends VV_Model{
 	function get_listBlog($a=0){
 		
 		if($a==0){
-			$sql = " SELECT a.id,a.cat_id,a.code,a.blog_type_id,a.is_views as views ,a.title,a.title_url,a.date_create,a.active,b.name as cat_name,c.name as blog_type_name 
-				FROM tbl_blog_list a
-				INNER JOIN tbl_blog_category b ON a.cat_id=b.id
-				INNER JOIN tbl_blog_type c ON c.id=a.blog_type_id
-				ORDER BY a.date_create DESC "; //echo $sql;
+			$sql = " SELECT *
+				FROM tbl_blog_list a"; //echo $sql;
 
-			$bind_param = array(
-				'bind'=>'',
-				'value'=>[]
-			);
 		}else{
-			$sql = " SELECT a.id,a.cat_id,a.code,a.blog_type_id,a.views,a.title,a.date_create,a.active,b.name as cat_name,c.name as blog_type_name 
+			$sql = " SELECT a.* 
 				FROM tbl_blog_list a
-				INNER JOIN tbl_blog_category b ON a.cat_id=b.id
-				INNER JOIN tbl_blog_type c ON c.id=a.blog_type_id
 				WHERE a.active=? ORDER BY a.date_create DESC "; //echo $sql;
 
-			$bind_param = array(
-				'bind'=>'i',
-				'value'=>[$a]
-			);
 		}
-		return $this->get_lists($sql,$bind_param);
+		return $this->get_list($sql);
 	}
 	function get_listBlogSettime(){
 		
-		$sql = " SELECT a.id,a.date_settime,b.date_create,b.code,b.title,b.title_url
+		$sql = " SELECT *
 			FROM tbl_blog_settime a
-			INNER JOIN tbl_blog_list b ON a.blog_code=b.code
-			ORDER BY a.date_settime ASC "; //echo $sql;
+			INNER JOIN tbl_blog_list b ON a.blog_code=b.code "; //echo $sql;
 
-			$bind_param = array(
-				'bind'=>'',
-				'value'=>[]
-			);
-
-		return $this->get_lists($sql,$bind_param);
+		return $this->get_list1($sql);
 	}
 	function get_blogInfo($code){
 		$sql = " SELECT a.content,b.* FROM tbl_blog_contents a INNER JOIN tbl_blog_list b ON a.blog_id=b.id WHERE a.blog_code=? "; //echo $sql;

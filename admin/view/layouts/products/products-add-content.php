@@ -26,7 +26,6 @@
 											} ?>
 										</select>
 									</div>
-									
 									<div class="form-row">
 										<div class="form-group col-md-12">
 											<label for="inputState">Giá niêm yết <span class="text-danger" title="Bắt buộc" >*</span></label>
@@ -34,22 +33,9 @@
 										</div>
 										
 									</div>
-									
-								
 			                   	<br>
 			                   	<div class="form-group">
-			                   		<label class="my-lable">Thẻ tags <span class="text-danger" title="Bắt buộc" >*</span></label>
-			                   		<input  name="tags" type="text" class="form-control inputtags" value="">
-			                   	</div>
-			                   	<div class="form-group">
-			                   		<label class="my-lable">Keywords <span class="text-danger" title="Bắt buộc" >*</span></label>
-			                   		<input  name="keywords" type="text" class="form-control inputtags" value="">
-			                   	</div>
-			                   	<div class="form-group">
 			                   		<label class="my-lable">Chọn ảnh cho sản phẩm (<span style="color: red"> Ảnh đầu tiên là Hình ảnh chính	</span>)<span class="text-danger" title="Bắt buộc" >*</span></label>
-			                   		<div class="file-upload-previews">
-			                   			
-			                   		</div>
 			                   		<div class="">
 			                   			<input required type="file" name="images" multiple="">
 			                   		</div>

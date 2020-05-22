@@ -112,11 +112,6 @@ CKEDITOR.config.extraPlugins = 'youtube';
 {
      height: 300,
 });
-  CKEDITOR.replace("description",
-{
-     height: 300,
-});
-
 $(".inputtags").tagsinput('items');
 
 if ( window.history.replaceState ) {
@@ -266,34 +261,7 @@ $('input[name="images"]').fileuploader({
     reader.readAsDataURL(event.target.files[0]);
   };
 
-   $(document).ready(function(){
-  const group1= <?= $group1?>;
-  var cat= $('select.categorySelect');
-  var html='';
-    cat.change(function() {
-       var selectedCat = $(this).children("option:selected").val();
-      var groupCat= [];
-      for (var i = 0; i < group1.length; i++) {
-        if(group1[i]['cat_id'] === selectedCat){
-            // console.log(i+" "+group1[i]['cat_id']);
-          groupCat.unshift(group1[i]);
-        }
-      }
-    if(groupCat == false ){
-       html='<option value="0"> Danh mục chưa có nhóm hàng</option>';
-    }else{
-       var html= '<option value="0"> Vui lòng chọn nhóm hàng</option>';
-        for (var j = 0; j < groupCat.length; j++) {
-           if((groupCat[j]['cat_id']==selectedCat)&&(groupCat!=false) ){
-             html += '<option value="'+groupCat[j]['id']+'">'+groupCat[j]['name']+'</option>';
-             }
-             else{
-              html='';
-             }
-          }
-      }
-      $('select[name="group"]').html(html);
-  });
-  })
+  
+ 
 </script>
 

@@ -25,7 +25,7 @@ class Login_Controller extends VV_Controller{
 	}
 
 	public function indexAction(){
-		$data['base_url'] = $this->_url;  print_r($data['base_url']) ;
+		$data['base_url'] = $this->_url;  //print_r($data['base_url']) ;
 		$this->_view->load('zz-login',$data);
 	}
 

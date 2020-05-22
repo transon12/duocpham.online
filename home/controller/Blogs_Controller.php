@@ -30,45 +30,23 @@ class Blogs_Controller extends VV_Controller{
 		 	}
 		 }
 		$data['tags'] = $keyword;
-		$limit = 14;
+		$limit = 200;
 		$data['pages'] = ceil(count($data['list']) / $limit);
 		if (isset($_GET['pages']) && $_GET['pages'] != '' ? $cr_page = $_GET['pages'] : $cr_page = 1) {
 			$start = ($cr_page - 1)*$limit;
 			$data['list_blog'] = $this->_model->blog->get_list_blog_pages($start,$limit);
+			$data['category']= $this->_model->home->Get_listCategory();
+			$data['banner']	= $this->_model->home->Get_listBanner();
+			$data['prodcutSort']= $this->_model->home->Get_listProduct1();
+			$data['prodcutSort2']= $this->_model->home->Get_listProduct3();
+			$data['group']= $this->_model->home->Get_listGroup1();
+			$data['blogNew']= $this->_model->home->Get_listblog();
+			$data['bloghots']= $this->_model->home->Get_listblogHot();
 		}
-		$this->_view->load('blog',$data);
+		$this->_view->load('blogList',$data);
 	}
 
-	// function categoryAction(){
-	// 	$data['base_url'] = $this->_config->item('base_url');
-	// 	$data['list_popular'] = $this->_model->blog->get_list_popular();
-	// 	$data['list_cat'] = $this->_model->blog->get_list_cat();
-		
-	// 	if (isset($_GET) && !empty($_GET)) {
-	// 		$code = $_GET['code'];
-	// 		$data['code'] = $code;
-	// 		$datas = $this->_model->blog->get_list_tag_cate($data['code']);
-	// 		$datax = array_merge($datas);
-	// 		$keyword= array();
-	// 		 if(!empty($datas)){
-	// 		 	foreach ($datas as $key => $v) {
-	// 		 		if(!empty($v['tags'])){
-	// 		 			$keyword=array_unique(array_merge($keyword,explode(',',trim($v['tags'],','))));
-	// 		 		}
-	// 		 	}
-	// 		 }
-	// 		$data['tags'] = $keyword;
-	// 		$data['lists'] = $this->_model->blog->get_list_blog_cate($code);
-	// 		$data['name'] = $this->_model->blog->get_name($code); 
-	// 		$limit = 8;
-	// 		$data['pages'] = ceil(count($data['lists']) / $limit);
-	// 		if (isset($_GET['pages']) && $_GET['pages'] != '' ? $cr_page = $_GET['pages'] : $cr_page = 1) {
-	// 			$start = ($cr_page - 1)*$limit;
-	// 			$data['blog_cate'] = $this->_model->blog->get_blog_cate($code,$start,$limit);
-	// 		}
-	// 	}
-	// 	$this->_view->load('blog_category',$data);
-	// }
+
 
 	function searchAction(){
 		$data['base_url'] = $this->_config->item('base_url');

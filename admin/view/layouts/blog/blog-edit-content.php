@@ -37,7 +37,7 @@
                 	</div>
                 	<hr>
                 	
-                  	<form id="form-submit-content" method="post" enctype="multipart/form-data" onsubmit="sys_preLoadSubmit()" >
+                  	<form id="form-submit-content"  method="post" enctype="multipart/form-data" onsubmit="sys_preLoadSubmit()" >
                    		<div class="card-body">
                    			<div class="form-group">
 		                      <label class="my-lable">Tiêu đề <span class="text-danger" title="Bắt buộc" >*</span></label>
@@ -59,65 +59,24 @@
 		                      <label class="my-lable">Keywords <span class="text-danger" title="Bắt buộc" >*</span></label>
 		                      <input  name="blog-keywords" type="text" class="form-control inputtags" value="<?=isset($_data['keywords']) ? $_data['keywords'] : '' ?>">
 		                    </div>
-		                    <div class="form-group">
-		                      <label class="my-lable">ID Video Youtube</label>
-		                      <input maxlength="20" name="blog-video" type="text" class="form-control form-control-sm" value="<?=isset($_data['video']) ? $_data['video'] : '' ?>">
-		                    </div>
-		                    
+		                  
 
-		                    
-
-							<div class="form-group">
-								<label for="inputState">Danh mục <span class="text-danger" title="Bắt buộc" >*</span></label>
-								<select  name="blog-category" class="form-control">
-									<option value="">Chọn danh mục</option>
-								  <?php 
-		                          if(isset($blog_category)&&!empty($blog_category)){
-		                          	foreach($blog_category as $v){
-		                          		echo '<option '.(isset($_data['cat_id'])&&$_data['cat_id']==$v['id'] ? 'selected' : '' ).' value="'.$v['id'].'_'.$v['code'].'">'.$v['name'].'</option>';
-		                          	}
-		                          }
-		                          ?>
-								</select>
-							</div>
-
-		                    <div class="form-row">
-		                      <div class="form-group col-md-6">
-		                        <label for="inputCity">Tác giả <span class="text-danger" title="Bắt buộc" >*</span></label>
-		                        <input  name="blog-author" type="text" class="form-control" value="<?=isset($_data['author']) ? $_data['author'] : 'red.vn' ?>">
-		                      </div>
-		                      <!-- <div class="form-group col-md-4">
-		                        <label for="inputState">Ngày viết <span class="text-danger" title="Bắt buộc" >*</span></label>
-		                        <input type="text" class="form-control datetimepicker" value="?=isset($_data['date_create']) ? $_data['date_create'] : '' ?>">
-		                      </div> -->
-		                      <div class="form-group col-md-6">
-		                        <label for="inputState">Lượt xem</label>
-		                        <input name="blog-views" type="number" class="form-control" value="<?=isset($_data['views']) ? $_data['views'] : 0 ?>">
-		                      </div>
-		                    </div>
-		                    <div class="form-row">
+		                   
+							<div class="form-row">
 		                      <div class="form-group col-md-4">
 		                        <label for="inputState">Loại tin <span class="text-danger" title="Bắt buộc" >*</span></label>
-		                        <select name="blog-type" class="form-control">
-		                          <?php 
-		                          if(isset($blog_type)&&!empty($blog_type)){
-		                          	foreach($blog_type as $v){
-		                          		echo '<option '.(isset($_data['cat_id'])&&$_data['cat_id']==$v['id'] ? 'selected' : '' ).' value="'.$v['id'].'">'.$v['name'].'</option>';
-		                          	}
-		                          }
-		                          ?>
+		                        <select name="status" class="form-control">
+								  <option value="1" <?=isset($_data['status'])&&$_data['status']==1 ? 'selected' : '' ?>>Tạo bài viết</option>
+								  <option value="2"  <?=isset($_data['status'])&&$_data['status']==2 ? 'selected' : '' ?> >Giới thiệu công ty</option>
+								  <option value="3"  <?=isset($_data['status'])&&$_data['status']==3 ? 'selected' : '' ?>>Chứng nhận công ty</option>
+								  <option value="4"  <?=isset($_data['status'])&&$_data['status']==4 ? 'selected' : '' ?>>Liên hệ công ty</option>
 		                        </select>
 		                      </div>
 		                      <div class="form-group col-md-4">
-		                        <label for="inputState">Ngôn ngữ <span class="text-danger" title="Bắt buộc" >*</span></label>
-		                        <select name="blog-language" class="form-control">
-		                          <?php 
-		                          if(isset($language)&&!empty($language)){
-		                          	foreach($language as $v){
-		                          		echo '<option '.(isset($_data['language'])&&$_data['language']==$v['id'] ? 'selected' : '' ).' value="'.$v['id'].'">'.$v['name'].'</option>';
-		                          	}
-		                          }
-		                          ?>
+		                        <label for="inputState">Trạng thái <span class="text-danger" title="Bắt buộc" >*</span></label>
+		                        <select name="active" class="form-control">
+								  <option value="1">Hiển thị</option>
+								  <option value="0">Không Hiển thị</option>
 		                        </select>
 		                      </div>
 		                      <div class="form-group col-md-4">

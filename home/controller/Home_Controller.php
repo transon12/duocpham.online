@@ -122,10 +122,12 @@ class Home_Controller extends VV_Controller{
 									}else {
 
 										$code = url_get_blogid($_GET['code']);
-										$data['detail'] = $this->_model->blog->get_details_code($code);
-										if(!empty($data['detail']) && isset($data['detail'])){
-											$keywords = $data['detail']['tags'];
+										$data['item'] = $this->_model->blog->get_details_code($code);
+										if(!empty($data['item']) && isset($data['item'])){
+											$keywords = $data['item']['tags'];
 											$data['keyword'] = explode(',',$keywords);
+											$data['bloghots']= $this->_model->home->Get_listblogHot();				
+
 											$this->_view->load('blogDetail',$data);	
 										}else{
 											header('Location:'.$data['base_url'].'/error');
@@ -148,7 +150,13 @@ class Home_Controller extends VV_Controller{
 								'category'=>'Trang chủ',
 								'url_code'=>'home',
 							) ;
-						
+							$data['category']= $this->_model->home->Get_listCategory();
+							$data['banner']	= $this->_model->home->Get_listBanner();
+							$data['prodcutSort']= $this->_model->home->Get_listProduct1();
+							$data['prodcutSort2']= $this->_model->home->Get_listProduct3();
+							$data['group']= $this->_model->home->Get_listGroup1();
+							$data['blogNew']= $this->_model->home->Get_listblog();
+							$data['bloghots']= $this->_model->home->Get_listblogHot();				
 							$this->_view->load('home',$data);
 						}
 

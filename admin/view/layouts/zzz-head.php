@@ -6,5 +6,5 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Red - Admin Dashboard Template</title>
+  <title>Vinnate.com</title>
   <link rel='shortcut icon' type='image/x-icon' href='<?=$base_url["img"]?>/upload/icon/red.png' />

@@ -21,12 +21,13 @@
                     <th>Code</th>
                     <th>Ngày tạo</th>
                     <th>Kích hoạt</th>
+                    
                     <th>TT</th>
                   </tr>
                 </thead>
                 <tbody id="table-body">
                   <?php 
-                  if(isset($item)&&!empty($item)){
+                
                     foreach($item as $v){
                       echo '<tr id="tr-'.$v['id'].'">
                               <td title="'.$v['name'].'" >'.str_trimText($v['name'],50).'</td>

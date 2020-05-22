@@ -19,7 +19,7 @@ RewriteRule ^adw-category/?([a-zA-Z0-9_-]+)*$ admin.php?c=category&a=$1&%{QUERY_
 
 RewriteRule ^adw-share/?([a-zA-Z0-9_-]+)*$ admin.php?c=share&a=$1&%{QUERY_STRING} [NC,L]
 RewriteRule ^adw-service/?([a-zA-Z0-9_-]+)*$ admin.php?c=service&a=$1&%{QUERY_STRING} [NC,L]
-RewriteRule ^adw-theme/?([a-zA-Z0-9_-]+)*$ admin.php?c=theme&a=$1&%{QUERY_STRING} [NC,L]
+RewriteRule ^adw-system/?([a-zA-Z0-9_-]+)*$ admin.php?c=system&a=$1&%{QUERY_STRING} [NC,L]
 
 
 RewriteRule ^adw-login/?([a-zA-Z0-9_-]+)*$ admin.php?c=login&a=$1&%{QUERY_STRING} [NC,L]
@@ -38,11 +38,11 @@ RewriteRule ^shiper/order/?([a-zA-Z0-9_-]+)*$ shiper.php?c=order&a=order&code=$1
 RewriteRule ^[/\s]*$ index.php?c=home&
 RewriteRule ^login/?([a-zA-Z0-9_-]+)*$ index.php?c=login&a=$1
 RewriteRule ^logout/*$ index.php?c=logout
-RewriteRule ^services/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=services&a=$1&code=$2&%{QUERY_STRING} [NC,L]
+RewriteRule ^product/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=product&code=$1&%{QUERY_STRING} [NC,L]
 RewriteRule ^blogs/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=blogs&a=$1&code=$2&%{QUERY_STRING} [NC,L]
 
 RewriteRule ^contact/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=contact&a=$1&code=$2&%{QUERY_STRING} [NC,L]
-RewriteRule ^info/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=info&a=$1&code=$2&%{QUERY_STRING} [NC,L]
+RewriteRule ^info/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=info&code=$1&%{QUERY_STRING} [NC,L]
 RewriteRule ^search/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=search&a=$1&code=$2&%{QUERY_STRING} [NC,L]
 RewriteRule ^kho-giao-dien/?([a-zA-Z0-9_-]+)*/?([a-zA-Z0-9_-]+)*$ index.php?c=theme&code=$1&%{QUERY_STRING} [NC,L]
 RewriteRule ^[/\s]*/?([a-zA-Z0-9_-]+)*(\.html)?$ index.php?c=home&code=$1&%{QUERY_STRING} [NC,L]

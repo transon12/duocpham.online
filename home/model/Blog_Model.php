@@ -14,7 +14,7 @@ class Blog_Model extends VV_Model{
 	}
 
 	function get_list_blog_pages($start,$limit){
-		$sql = "SELECT * FROM tbl_blog_list ORDER BY date_create DESC LIMIT $start,$limit";
+		$sql = "SELECT * FROM tbl_blog_list a  Where a.active=1 AND a.status=1 ORDER BY date_create DESC LIMIT $start,$limit";
 		return $this->get_list($sql);
 	}
 
@@ -65,6 +65,21 @@ class Blog_Model extends VV_Model{
 	function get_name($code){
 		$sql = "SELECT * FROM tbl_blog_category WHERE code = '".$code."'";
 		return $this->get_row($sql);
+	}
+	function get_data($code){
+		$sql = "SELECT * FROM tbl_blog_list a
+		JOIN tbl_blog_contents
+		ON tbl_blog_contents.blog_code = a.code
+		 WHERE status = '".$code."'";
+		return $this->get_row($sql);
+	}
+
+	function get_dataList($code){
+		$sql = "SELECT * FROM tbl_blog_list a
+		JOIN tbl_blog_contents
+		ON tbl_blog_contents.blog_code = a.code
+		 WHERE status = '".$code."'";
+		return $this->get_list($sql);
 	}
 
 	 function get_list_search($keyword){

@@ -7,40 +7,38 @@ class Home_Model extends VV_Model{
 	function __destruct(){
 		parent::dis_connect();
 	}
-	function Get_listIndusty(){
-		$industry = $this->get_list(" SELECT * FROM tbl_p_industry a where a.active=1 ORDER BY a.position  ASC  LIMIT 12  ");
-		$product = $this->get_list(" SELECT a.pi_id,a.id FROM tbl_product a where a.active=1"); //print_r ($product) ;
-				if(!empty($industry)){
-				foreach($industry as $k1=>$v1){
-					if(!empty($product)){
-						foreach($product as $k2=>$v2){
-						if($v1['id']==$v2['pi_id']){
-							$industry[$k1]['list'][] = $v2;
-							unset($product[$k2]);
-						}
-					}
-				}
-			}
-		}
-		return $industry;
+	function Get_listCategory(){
+		$sql= "SELECT * FROM category a Where a.active=1 ";
+		return $this->get_list1($sql);
 	}
 	
-	function Get_listGroup2(){
-		$sql= "SELECT * FROM tbl_p_group a Where a.active=1  ORDER BY a.position ";
+	function Get_listblog(){
+		$sql= "SELECT * FROM tbl_blog_list a Where a.active=1 and a.status= 1 ORDER BY a.date_create DESC Limit 7";
 		return $this->get_list($sql);
 	}
 	function Get_listProduct1(){
-		$sql= "SELECT * FROM tbl_product a Where a.fsale=1 and a.active=1 ORDER BY RAND() LIMIT 6"; //echo $sql;
+		$sql= "SELECT * FROM products a Where a.active=1 ORDER BY a.createdAt DESC";
+		return $this->get_list($sql); 
+	}
+	function Get_listProduct3(){
+		$sql= "SELECT * FROM products a Where a.active=1 ORDER BY a.hotProduct DESC";
 		return $this->get_list($sql); 
 	}
 	function Get_listProduct2(){
-		$sql= "SELECT a.* , b.pvban AS pvban, c.phone as phone_shop
-		FROM tbl_product a 
-		INNER JOIN tbl_nhacungcap_info b ON a.ncc_id= b.ncc_id
-		INNER JOIN tbl_nhacungcap c ON a.ncc_id= c.id
+		$sql= "SELECT a.*
+		FROM products  a 
 		WHERE a.active=1 "; //echo $sql;
 		return $this->get_list($sql); 
 	}
+	function Get_listblogHot(){
+		$sql= "SELECT * FROM tbl_blog_list a Where a.active=1 AND a.stick=1  and a.status= 1 ORDER BY RAND() LIMIT 8";
+		return $this->get_list($sql);
+	}
+	function Get_Info(){
+		$sql= "SELECT * FROM tbl_blog_list a Where a.active=1 and a.status=2 ORDER BY RAND() LIMIT 8";
+		return $this->get_row($sql);
+	}
+	
 	
 	function get_rowProductByCode($code){
 			$sql = " SELECT a.*,b.description,b.video,b.width,b.height,b.length,b.weight,b.baohanh,b.pro_info,c.name as bh_name,d.name as ptname,e.id as pg_id,e.name as pgname,f.id as pi_id,f.name as piname,g.name as country_name,h.name as ncc_name,h.code as ncc_code,h.phone as ncc_phone,h.avatar
@@ -67,13 +65,13 @@ class Home_Model extends VV_Model{
 		 		return $this->get_list($sql);
 	}
 	function Get_listGroup1(){
-		$group = $this->get_list(" SELECT * FROM tbl_p_group a where a.active=1 LIMIT 8");
-		$product = $this->get_list(" SELECT a.pg_id,a.id FROM tbl_product a where a.active=1"); //print_r ($product) ;
+		$group = $this->get_list(" SELECT * FROM category a where a.active=1 LIMIT 8");
+		$product = $this->get_list(" SELECT * FROM products a where a.active=1"); //print_r ($product) ;
 		if(!empty($group)){
 			foreach($group as $k1=>$v1){
 				if(!empty($product)){
 					foreach($product as $k2=>$v2){
-						if($v1['id']==$v2['pg_id']){
+						if($v1['id']==$v2['idCat']){
 							$group[$k1]['list'][] = $v2;
 							unset($product[$k2]);
 						}
@@ -93,21 +91,16 @@ class Home_Model extends VV_Model{
 		Where a.home=2 and a.banner_acc='admin'  ORDER BY a.position ASC ";
 		return $this->get_list($sql);
 	}
-	function  Get_listbanner(){
-		$sql= "SELECT * FROM tbl_banner a
-		Where a.active=1 and a.banner_acc='admin' AND a.position<6   ORDER BY a.position ASC ";
-		return $this->get_list($sql);
-	}
 
 	function get_listGroup(){
 		$industry = $this->get_list(" SELECT * FROM tbl_p_industry a where a.active=1 ORDER BY a.position  ASC  LIMIT 12  ");
-		$group = $this->get_list(" SELECT id,name,pi_id,active FROM tbl_p_group a where a.active=1");
+		$group = $this->get_list(" SELECT * FROM tbl_p_group a where a.active=1");
 		
 		if(!empty($industry)){
 			foreach($industry as $k1=>$v1){
 				if(!empty($group)){
 					foreach($group as $k2=>$v2){
-						if($v1['id']==$v2['pi_id']){
+						if($v1['id']==$v2['idCat']){
 							$industry[$k1]['list'][] = $v2;
 							unset($group[$k2]);
 						}
@@ -179,9 +172,9 @@ class Home_Model extends VV_Model{
 		return $this->get_list($sql);
 	}
 	
-	function get_Check_promotion(){
-		$sql= " SELECT * FROM tbl_event a where a.active= 1";
-		return $this->get_list($sql);
+	function Get_listBanner(){
+		$sql= " SELECT * FROM tbl_banner a where a.active= 1";
+		return $this->get_list1($sql);
 	}
 	function get_Keyword(){
 		$sql= "SELECT a.key_word FROM tbl_product_info a";

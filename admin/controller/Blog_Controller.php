@@ -42,29 +42,19 @@ class Blog_Controller extends VV_Controller{
 
 		if(isset($_POST['blog-btn'])&&!empty($_POST['blog-btn'])){
 			usleep(rand(200000,1000000));
-			$cat = isset($_POST['blog-category']) ? str_explodeCategory($_POST['blog-category']) : array() ;
 			$is_settime = isset($_POST['blog-settime-check'])&&$_POST['blog-settime-check']==1 ? $_POST['blog-settime-check'] : 0; //echo $is_settime; die;
 			$data['_data'] = array(
-				'bind_param'=>'iisissssssssisiiisi',
+				'bind_param'=>'isssssisiis',
 				'code'=>str_createCodeBlog(),
-				'cat_id'=>isset($cat[0]) ? $cat[0] : '',
-				'cat_code'=>isset($cat[1]) ? $cat[1] : '',
-				'website'=>1,
-				'avatar'=>isset($_POST['blog-avatar-name']) ? str_checkString($_POST['blog-avatar-name']) : '',
-				'avatar_alt'=>isset($_POST['blog-avatar-alt']) ? str_checkString($_POST['blog-avatar-alt']) : '',
-				'video'=>isset($_POST['blog-video']) ? str_checkString($_POST['blog-video']) : '',
 				'title'=>isset($_POST['blog-title']) ? str_checkString($_POST['blog-title']) : '',
 				'title_url'=>isset($_POST['blog-title-url']) ? str_checkString($_POST['blog-title-url']) : '',
 				'description'=>isset($_POST['blog-description']) ? str_checkString($_POST['blog-description']) : '',
 				'tags'=>isset($_POST['blog-tags']) ? str_checkString($_POST['blog-tags']) : '',
 				'keywords'=>isset($_POST['blog-keywords']) ? str_checkString($_POST['blog-keywords']) : '',
-				'views'=>isset($_POST['blog-views']) ? str_checkString($_POST['blog-views']) : '',
-				'author'=>isset($_POST['blog-author']) ? str_checkString($_POST['blog-author']) : '',
 				'stick'=>isset($_POST['blog-stick']) ? str_checkString($_POST['blog-stick']) : '',
-				'language'=>isset($_POST['blog-language']) ? str_checkString($_POST['blog-language']) : '',
-				'blog_type_id'=>isset($_POST['blog-type']) ? str_checkString($_POST['blog-type']) : '',
-				'date_create'=>isset($_POST['blog-date']) ? str_checkString($_POST['blog-date']).' '.date('H:i:s',time()) : '',
-				'active'=> $is_settime==0 ? 1 : -1
+				'date_create'=> date('Y-m-d H:i:s',time()),
+				'status'=>isset($_POST['status']) ? str_checkString($_POST['status']) : '',
+				'active'=> isset($_POST['active']) ? str_checkString($_POST['active']) : '',
 			);
 
 			$data['_content'] = array(
@@ -74,11 +64,7 @@ class Blog_Controller extends VV_Controller{
 				'content'=>isset($_POST['blog-content']) ? $_POST['blog-content'] : '',
 			);
 
-			$data['_settime'] = array(
-				'bind_param'=>'is',
-				'blog_code'=>$data['_data']['code'],
-				'date_settime'=>isset($_POST['blog-settime-day']) ? str_checkString($_POST['blog-settime-day'].' '.$_POST['blog-settime-hour']) : '',
-			); //print_r($data['_settime']); die;
+			 //print_r($data['_settime']); die;
 			//$this->_model->blog->insert_blog_settime($data['_settime']); die;
 
 			if(!empty($data['_data']['title'])&&!empty($data['_content']['content'])&&!empty($data['_data']['tags'])&&!empty($data['_data']['title_url'])&&!empty($data['_data']['description'])&&!empty($data['_data']['keywords'])){
@@ -92,10 +78,6 @@ class Blog_Controller extends VV_Controller{
 						if(!empty($blog_id)){
 							$data['_content']['blog_id'] = $blog_id;
 							$this->_model->blog->insert_blog_content($data['_content']);
-
-							if($is_settime==1){
-								$this->_model->blog->insert_blog_settime($data['_settime']);
-							}
 
 							$data['_data'] = array();
 
@@ -147,22 +129,16 @@ class Blog_Controller extends VV_Controller{
 				);
 		if(isset($_POST['blog-btn'])&&!empty($_POST['blog-btn'])&&!empty($blog_code)){
 			usleep(rand(200000,1000000));
-			$cat = isset($_POST['blog-category']) ? str_explodeCategory($_POST['blog-category']) : array() ;
 			$data['_data'] = array(
-				'bind_param'=>'isssssssisiiii',
-				'cat_id'=>isset($cat[0]) ? $cat[0] : '',
-				'cat_code'=>isset($cat[1]) ? $cat[1] : '',
-				'video'=>isset($_POST['blog-video']) ? str_checkString($_POST['blog-video']) : '',
+				'bind_param'=>'ssssssiii',
 				'title'=>isset($_POST['blog-title']) ? str_checkString($_POST['blog-title']) : '',
 				'title_url'=>isset($_POST['blog-title-url']) ? str_checkString($_POST['blog-title-url']) : '',
 				'description'=>isset($_POST['blog-description']) ? str_checkString($_POST['blog-description']) : '',
 				'tags'=>isset($_POST['blog-tags']) ? str_checkString($_POST['blog-tags']) : '',
 				'keywords'=>isset($_POST['blog-keywords']) ? str_checkString($_POST['blog-keywords']) : '',
-				'views'=>isset($_POST['blog-views']) ? str_checkString($_POST['blog-views']) : '',
-				'author'=>isset($_POST['blog-author']) ? str_checkString($_POST['blog-author']) : '',
 				'stick'=>isset($_POST['blog-stick']) ? str_checkString($_POST['blog-stick']) : '',
-				'language'=>isset($_POST['blog-language']) ? str_checkString($_POST['blog-language']) : '',
-				'blog_type_id'=>isset($_POST['blog-type']) ? str_checkString($_POST['blog-type']) : ''
+				'status'=>isset($_POST['status']) ? str_checkString($_POST['status']) : '0',
+				'active'=>isset($_POST['active']) ? str_checkString($_POST['active']) : ''
 			); //print_r($data['_data']); die;
 
 			$data['_content'] = array(
@@ -173,11 +149,13 @@ class Blog_Controller extends VV_Controller{
 			if(!empty($data['_data']['title'])&&!empty($data['_content']['content'])&&!empty($data['_data']['tags'])&&!empty($data['_data']['title_url'])&&!empty($data['_data']['description'])&&!empty($data['_data']['keywords'])){
 				$this->_model->blog->update_blog_list($data['_data'],['where'=>'code=?','param'=>[$blog_code]]);
 				$this->_model->blog->update_blog_content($data['_content'],['where'=>'blog_code=?','param'=>[$blog_code]]); //die;
-
+				
 				$data['_noti'] = array(
 								'code'=>200,
 								'error'=>'Bạn đã update bài thành công '
 							);
+			header('Location:'.$this->_url['web'].'/adw-blog/list');
+
 
 			}else{
 				$data['_noti'] = array(
@@ -287,10 +265,10 @@ class Blog_Controller extends VV_Controller{
 			'avatar'=>''
 		);
 		$blog_code = isset($_POST['blog-code']) ? str_checkString($_POST['blog-code']) : '';
-		if($input['avatar_alt']&&!empty($blog_code)){
+		if(!empty($blog_code)){
 			if(isset($_FILES['blog-file']['name'])&&!empty($_FILES['blog-file']['name'])){ //print_r($_FILES['blog-file']); die;
 				$img_old = $_POST['blog-avatar'];
-				$upload = up_upLoadFile1($_FILES['blog-file'],'upload/blogs/',['jpg','jpeg','png'],explode('-',$img_old)[0],$img_old); 
+				$upload = up_upLoadFile($_FILES['blog-file'],'upload/blogs/',['jpg','jpeg','png'],explode('-',$img_old)[0],$img_old); 
 				//print_r($upload); die;
 				if($upload['code']==200){
 					$input['avatar'] = $upload['name'];
